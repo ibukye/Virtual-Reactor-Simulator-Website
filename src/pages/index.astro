@@ -1,0 +1,185 @@
+---
+// Constants
+const gameTitle = "Virtual Reactor Control Simulator";
+const copyCatch = "Master Process Safety in a Risk-Free Environment.";
+const downloadUrl = "https://github.com/ibukye/Virtual-Reactor-Control-Simulator/releases/download/v1.0/Simulator.zip"; 
+const version = "Prototype v1.0";
+
+const teamMembers = [
+  { name: "Kong Zen Eu", github: "https://github.com/" },
+  { name: "Tan Shuen Xian", github: "https://github.com/shuen-05" },
+  { name: "Ibuki Furusho", github: "https://github.com/ibukye" }, 
+  { name: "Jacob Villegas", github: "https://github.com/LastGuest101" },
+  { name: "Qian Chengyu", github: "https://github.com/" },
+  { name: "Lai Yuyang", github: "https://github.com/" }
+];
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{gameTitle} - Group 12</title>
+    <meta name="description" content="A gamified learning tool for chemical engineering students to master reactor control and safety." />
+  </head>
+  <body class="bg-slate-900 text-white font-sans antialiased">
+    
+    <header class="relative h-[70vh] flex items-center justify-center bg-gradient-to-br from-blue-900 via-slate-900 to-slate-950 overflow-hidden">
+      <div class="absolute inset-0 opacity-20">
+        </div>
+      <div class="relative z-10 text-center px-4 max-w-5xl mx-auto">
+        <span class="inline-block py-1 px-3 rounded-full bg-blue-500/20 text-blue-300 text-sm font-semibold mb-6 border border-blue-500/30">
+          Group 12 - University of Nottingham
+        </span>
+        <h1 class="text-5xl md:text-7xl font-bold mb-6 tracking-tight leading-tight">
+          {gameTitle}
+        </h1>
+        <p class="text-xl md:text-2xl text-slate-300 mb-10 max-w-2xl mx-auto">
+          {copyCatch}
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="#download" class="bg-blue-600 hover:bg-blue-500 text-white px-8 py-4 rounded-lg font-bold transition duration-300 shadow-lg shadow-blue-500/25 flex items-center justify-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" />
+            </svg>
+            Download Prototype
+          </a>
+          <a href="#about" class="bg-slate-800 hover:bg-slate-700 text-white px-8 py-4 rounded-lg font-semibold transition duration-300 border border-slate-700">
+            Learn More
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <main class="max-w-5xl mx-auto px-6 py-20 space-y-24">
+      
+      <section id="about">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+          <div>
+            <h2 class="text-3xl font-bold mb-6 text-blue-400">Bridging Theory & Practice</h2>
+            <div class="prose prose-invert text-slate-300 leading-relaxed">
+              <p class="mb-4">
+                In chemical engineering, theoretical knowledge alone isn't enough. Students often struggle to visualize how variables like temperature, pressure, and flow interact dynamically within a reactor.
+              </p>
+              <p>
+                This project provides a <strong>safe, interactive environment</strong> where students can experience the challenges of reactor control without real-world risks. By gamifying key safety concepts, we transform traditional learning into an immersive, hands-on experience.
+              </p>
+            </div>
+          </div>
+          <div class="bg-slate-800 p-8 rounded-2xl border border-slate-700 shadow-xl">
+            <h3 class="text-xl font-bold mb-4 text-white">Key Objectives</h3>
+            <ul class="space-y-3 text-slate-300">
+              <li class="flex gap-3">
+                <span class="text-blue-500">✓</span>
+                <span>Recognize early signs of reactor instability</span>
+              </li>
+              <li class="flex gap-3">
+                <span class="text-blue-500">✓</span>
+                <span>Apply control actions to restore safe operation</span>
+              </li>
+              <li class="flex gap-3">
+                <span class="text-blue-500">✓</span>
+                <span>Understand PID relationships (Temp, Flow, Pressure)</span>
+              </li>
+              <li class="flex gap-3">
+                <span class="text-blue-500">✓</span>
+                <span>Experience "Game Over" consequences safely</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="text-3xl font-bold mb-10 text-center">System & Architecture</h2>
+        <div class="grid md:grid-cols-3 gap-6">
+          <div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700 hover:border-blue-500/50 transition">
+            <div class="w-12 h-12 bg-blue-900/50 rounded-lg flex items-center justify-center mb-4 text-2xl">🎮</div>
+            <h3 class="text-xl font-bold mb-2">Powered by Unity</h3>
+            <p class="text-slate-400 text-sm">
+              Built with the Unity Engine for responsive visualization and smooth user interaction. We utilize Unity's physics engine to simulate realistic reactor behaviors.
+            </p>
+          </div>
+          <div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700 hover:border-blue-500/50 transition">
+            <div class="w-12 h-12 bg-blue-900/50 rounded-lg flex items-center justify-center mb-4 text-2xl">⚙️</div>
+            <h3 class="text-xl font-bold mb-2">Industrial Modeling</h3>
+            <p class="text-slate-400 text-sm">
+              Reactor components, valves, and piping systems were modeled using <strong>SolidWorks</strong> to ensure accurate representation of industrial equipment.
+            </p>
+          </div>
+          <div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700 hover:border-blue-500/50 transition">
+            <div class="w-12 h-12 bg-blue-900/50 rounded-lg flex items-center justify-center mb-4 text-2xl">🚨</div>
+            <h3 class="text-xl font-bold mb-2">Smart Alarms</h3>
+            <p class="text-slate-400 text-sm">
+              The system provides immediate visual and audible feedback when parameters exceed safety thresholds, training students in timely decision-making.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="bg-slate-950 p-8 rounded-3xl border border-slate-800">
+        <h2 class="text-2xl font-bold mb-8 text-center">Simulation Preview</h2>
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="aspect-video bg-slate-800 rounded-lg flex items-center justify-center text-slate-600 border border-slate-700">
+            <span class="text-sm">Main Control Interface</span>
+          </div>
+          <div class="aspect-video bg-slate-800 rounded-lg flex items-center justify-center text-slate-600 border border-slate-700">
+             <span class="text-sm">Alarm & Emergency Scenario</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="text-center">
+        <h2 class="text-2xl font-bold mb-8 text-slate-200">Meet the Team (Group 12)</h2>
+        <div class="flex flex-wrap justify-center gap-4">
+          {teamMembers.map((member) => (
+            <div class="bg-slate-800 px-5 py-2 rounded-full border border-slate-700 text-slate-300 text-sm font-medium flex items-center gap-3 hover:border-blue-500/50 transition-colors">
+              <span>{member.name}</span>
+              {member.github && (
+                <a 
+                  href={member.github} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  class="text-slate-500 hover:text-white transition-colors"
+                  aria-label={`GitHub profile of ${member.name}`}
+                >
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
+                  </svg>
+                </a>
+              )}
+            </div>
+          ))}
+        </div>
+        <div class="mt-8 text-sm text-slate-500">
+          Supervised by Dr. Tissa Chandesa • Expert Liaison: Dr. Joyce Tiong, Dr. Jaya Kumar, Dr. Ong Sze-Pheng
+        </div>
+      </section>
+
+      <section id="download" class="text-center py-12 border-t border-slate-800">
+        <h2 class="text-3xl font-bold mb-4">Ready to operate the reactor?</h2>
+        <p class="text-slate-400 mb-8">Compatible with Windows (& macOS) </p>
+        
+        <a href={downloadUrl} class="inline-block bg-green-600 hover:bg-green-500 text-white text-xl font-bold py-4 px-12 rounded-xl transition duration-200 shadow-xl shadow-green-900/20">
+          Download {version}
+        </a>
+
+        <div class="mt-8 bg-yellow-500/10 border border-yellow-500/20 p-4 rounded-lg text-left max-w-lg mx-auto">
+          <p class="text-yellow-500 font-bold text-sm mb-1">⚠ Windows SmartScreen Warning</p>
+          <p class="text-xs text-yellow-200/70">
+            Since this is a university prototype, Windows may display a "Protected your PC" warning. 
+            Click <strong>"More info"</strong> → <strong>"Run anyway"</strong> to launch the simulator.
+          </p>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="bg-slate-950 py-8 text-center border-t border-slate-900">
+      <p class="text-slate-600 text-sm">
+        &copy; 2025 Group 12, University of Nottingham. All rights reserved. <br>
+        Developed for the Virtual Reactor Control Simulator Project.
+      </p>
+    </footer>
+  </body>
+</html>
