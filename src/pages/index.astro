@@ -4,14 +4,102 @@ const gameTitle = "Virtual Reactor Control Simulator";
 const copyCatch = "Master Process Safety in a Risk-Free Environment.";
 const downloadUrl = "https://github.com/ibukye/Virtual-Reactor-Simulator-Website/releases/download/v1.0.0/ChemicalReactro.iss"; 
 const version = "Prototype v1.0";
+const csvAnalysisUrl = "https://ibukye.github.io/Virtual_Reactor_Simulator_Viewer/";
 
 const teamMembers = [
-  { name: "Kong Zen Eu", github: "https://github.com/" },
+  { name: "Kong Zen Eu", github: "https://github.com/zeniel06" },
   { name: "Tan Shuen Xian", github: "https://github.com/shuen-05" },
   { name: "Ibuki Furusho", github: "https://github.com/ibukye" }, 
   { name: "Jacob Villegas", github: "https://github.com/LastGuest101" },
   { name: "Qian Chengyu", github: "https://github.com/" },
   { name: "Lai Yuyang", github: "https://github.com/" }
+];
+
+const slides = [
+  {
+    num: "01",
+    title: "Background & Motivation",
+    accent: "#3b82f6",
+    bg: "linear-gradient(135deg,#1e3a5f 0%,#0f172a 100%)",
+    content: [
+      { label: "❌ The Problem", points: ["Reactors taught only through lectures & diagrams", "Students struggle to visualise dynamic interactions", "Real labs are costly, risky, and inaccessible"] },
+      { label: "✅ Our Solution", points: ["Virtual reactor game for safe interactive learning", "Experience reactor control without real-world risk", "Gamified mechanics: scoring, levels & scenarios"] }
+    ]
+  },
+  {
+    num: "02",
+    title: "Existing Solutions & Gap",
+    accent: "#8b5cf6",
+    bg: "linear-gradient(135deg,#2d1b4e 0%,#0f172a 100%)",
+    content: [
+      { label: "🔬 Labster", points: ["3D virtual lab, good UI — but limited ChE process control depth"] },
+      { label: "📊 Simulink / Aspen HYSYS", points: ["Industry-standard accuracy — but steep learning curve, no gamification"] },
+      { label: "🎯 Our Niche", points: ["Beginner-friendly + gamified + ChE-focused simulator"] }
+    ]
+  },
+  {
+    num: "03",
+    title: "Aims & Objectives",
+    accent: "#06b6d4",
+    bg: "linear-gradient(135deg,#0c3040 0%,#0f172a 100%)",
+    content: [
+      { label: "🎯 Aim", points: ["Develop an interactive simulation game enhancing students' understanding of control systems and process safety in chemical engineering"] },
+      { label: "📚 Learning Outcomes", points: ["Recognise early signs of reactor instability", "Apply control actions to restore safe operation", "Understand Temp, Flow & Pressure relationships", "Appreciate timely decision-making in process safety"] }
+    ]
+  },
+  {
+    num: "04",
+    title: "Methodology",
+    accent: "#10b981",
+    bg: "linear-gradient(135deg,#0d3027 0%,#0f172a 100%)",
+    content: [
+      { label: "🎮 Engine: Unity (Chosen ✓)", points: ["Advanced 3D visualisation & PhysX engine", "C# scripting + massive community support", "Superior performance & cross-platform deployment"] },
+      { label: "⚙️ Development Process", points: ["Agile workflow: Plan → Design → Develop → Test", "GitHub branching + force text serialisation for assets", "Simplified parameter model: Temp, Reactants, Time"] }
+    ]
+  },
+  {
+    num: "05",
+    title: "Core Gameplay Mechanics",
+    accent: "#f97316",
+    bg: "linear-gradient(135deg,#3b1c08 0%,#0f172a 100%)",
+    content: [
+      { label: "🔄 The Game Loop", points: ["👀 Monitor T, P, pH graphs in real-time", "🎛️ Adjust heater, cooler, valves, stirrer", "✅ Stabilise within safe limits to pass"] },
+      { label: "🏆 Progression & Scoring", points: ["6 levels: Choc Milk → Haber-Bosch Process", "Post-level chemistry quiz earns 1–3 ★ rating", "Safety alarms → sustained violations = explosion 💥"] }
+    ]
+  },
+  {
+    num: "06",
+    title: "Significance & Impact",
+    accent: "#ec4899",
+    bg: "linear-gradient(135deg,#3b0a27 0%,#0f172a 100%)",
+    content: [
+      { label: "🛡️ Safe Learning", points: ["Practice overheating, pressure surges & hazardous scenarios without real-world risk"] },
+      { label: "🎮 Engagement & Retention", points: ["Gamification transforms passive learning into active, immersive experiences"] },
+      { label: "🌐 Accessibility", points: ["No costly lab equipment — learn anytime, anywhere on a standard PC"] },
+      { label: "🚀 Beyond the Classroom", points: ["Foundation for industrial process safety training programs"] }
+    ]
+  },
+  {
+    num: "07",
+    title: "Future Plans",
+    accent: "#14b8a6",
+    bg: "linear-gradient(135deg,#0c2e2c 0%,#0f172a 100%)",
+    content: [
+      { label: "🧪 Chemical Accuracy", points: ["More precise kinetic models and realistic industrial parameters"] },
+      { label: "🎨 Visual Polish", points: ["Refined 3D graphics, animations & comprehensive tutorial systems"] },
+      { label: "🤖 AI Quiz Feature", points: ["LLM-generated chemistry questions tailored to each level"] },
+      { label: "📊 Data & Analytics", points: ["CSV export of session data for post-play performance review"] }
+    ]
+  }
+];
+
+const levels = [
+  { num: 1, name: "Choc Milk Basics", complexity: "Low", focus: "Understanding heating and cooling effects", border: "border-green-600/40", badge: "bg-green-900/50 text-green-300" },
+  { num: 2, name: "Multi-Parameter Interaction", complexity: "Medium", focus: "Managing temperature and flow rate simultaneously", border: "border-yellow-600/40", badge: "bg-yellow-900/50 text-yellow-300" },
+  { num: 3, name: "Precision Temp Control", complexity: "Med-High", focus: "Fine control within narrow ranges under time pressure", border: "border-orange-600/40", badge: "bg-orange-900/50 text-orange-300" },
+  { num: 4, name: "Acid-Base Titration (HCl+NaOH)", complexity: "High", focus: "Understanding neutralisation and pH balancing", border: "border-red-600/40", badge: "bg-red-900/50 text-red-300" },
+  { num: 5, name: "Haber-Bosch (NH₃ Synthesis)", complexity: "Advanced", focus: "Realistic chemical production with limited yield (15–25%)", border: "border-purple-600/40", badge: "bg-purple-900/50 text-purple-300" },
+  { num: 6, name: "High Pressure Challenge", complexity: "Expert", focus: "Multi-variable coordination under extreme operating conditions", border: "border-pink-600/40", badge: "bg-pink-900/50 text-pink-300" },
 ];
 ---
 
@@ -21,15 +109,44 @@ const teamMembers = [
     <meta name="viewport" content="width=device-width" />
     <title>{gameTitle} - Group 12</title>
     <meta name="description" content="A gamified learning tool for chemical engineering students to master reactor control and safety." />
+    <style>
+      /* Slide scrollbar */
+      .slides-track::-webkit-scrollbar { height: 6px; }
+      .slides-track::-webkit-scrollbar-track { background: #1e293b; border-radius: 9999px; }
+      .slides-track::-webkit-scrollbar-thumb { background: #3b82f6; border-radius: 9999px; }
+
+      /* Nav highlight on scroll */
+      .nav-link { transition: color 0.2s; }
+      .nav-link:hover { color: #93c5fd; }
+
+      /* Smooth scroll */
+      html { scroll-behavior: smooth; }
+    </style>
   </head>
+
   <body class="bg-slate-900 text-white font-sans antialiased">
-    
-    <header class="relative h-[70vh] flex items-center justify-center bg-gradient-to-br from-blue-900 via-slate-900 to-slate-950 overflow-hidden">
-      <div class="absolute inset-0 opacity-20">
+
+    <!-- ─── NAV ─── -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-slate-900/80 backdrop-blur-md border-b border-slate-800">
+      <div class="max-w-5xl mx-auto px-6 py-3 flex items-center justify-between">
+        <span class="text-sm font-bold text-blue-400">⚗️ VR Simulator</span>
+        <div class="hidden md:flex items-center gap-6 text-sm text-slate-400">
+          <a href="#about" class="nav-link">About</a>
+          <a href="#slides" class="nav-link">Slides</a>
+          <a href="#report" class="nav-link">Report</a>
+          <a href="#team" class="nav-link">Team</a>
+          <a href="#download" class="nav-link">Download</a>
+          <a href={csvAnalysisUrl} target="_blank" class="bg-cyan-600 hover:bg-cyan-500 text-white px-3 py-1.5 rounded-lg font-semibold transition">📊 Data Review</a>
         </div>
+      </div>
+    </nav>
+
+    <!-- ─── HERO ─── -->
+    <header class="relative h-[100vh] flex items-center justify-center bg-gradient-to-br from-blue-900 via-slate-900 to-slate-950 overflow-hidden pt-14">
+      <div class="absolute inset-0 opacity-10 pointer-events-none" style="background: radial-gradient(ellipse 80% 60% at 60% 40%, #3b82f6 0%, transparent 70%);"></div>
       <div class="relative z-10 text-center px-4 max-w-5xl mx-auto">
         <span class="inline-block py-1 px-3 rounded-full bg-blue-500/20 text-blue-300 text-sm font-semibold mb-6 border border-blue-500/30">
-          Group 12 - University of Nottingham
+          Group 12 · University of Nottingham · COMP2019
         </span>
         <h1 class="text-5xl md:text-7xl font-bold mb-6 tracking-tight leading-tight">
           {gameTitle}
@@ -39,10 +156,13 @@ const teamMembers = [
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
           <a href="#download" class="bg-blue-600 hover:bg-blue-500 text-white px-8 py-4 rounded-lg font-bold transition duration-300 shadow-lg shadow-blue-500/25 flex items-center justify-center gap-2">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
               <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" />
             </svg>
             Download Prototype
+          </a>
+          <a href={csvAnalysisUrl} target="_blank" class="bg-cyan-700 hover:bg-cyan-600 text-white px-8 py-4 rounded-lg font-bold transition duration-300 flex items-center justify-center gap-2 border border-cyan-600/40">
+            📊 Post-Session Data Review
           </a>
           <a href="#about" class="bg-slate-800 hover:bg-slate-700 text-white px-8 py-4 rounded-lg font-semibold transition duration-300 border border-slate-700">
             Learn More
@@ -51,98 +171,255 @@ const teamMembers = [
       </div>
     </header>
 
-    <main class="max-w-5xl mx-auto px-6 py-20 space-y-24">
-      
+    <main class="max-w-5xl mx-auto px-6 py-20 space-y-28">
+
+      <!-- ─── ABOUT ─── -->
       <section id="about">
         <div class="grid md:grid-cols-2 gap-12 items-center">
           <div>
             <h2 class="text-3xl font-bold mb-6 text-blue-400">Bridging Theory & Practice</h2>
-            <div class="prose prose-invert text-slate-300 leading-relaxed">
-              <p class="mb-4">
-                In chemical engineering, theoretical knowledge alone isn't enough. Students often struggle to visualize how variables like temperature, pressure, and flow interact dynamically within a reactor.
-              </p>
-              <p>
-                This project provides a <strong>safe, interactive environment</strong> where students can experience the challenges of reactor control without real-world risks. By gamifying key safety concepts, we transform traditional learning into an immersive, hands-on experience.
-              </p>
+            <div class="text-slate-300 leading-relaxed space-y-4">
+              <p>In chemical engineering, theoretical knowledge alone isn't enough. Students often struggle to visualise how variables like temperature, pressure, and flow interact dynamically within a reactor.</p>
+              <p>This project provides a <strong class="text-white">safe, interactive environment</strong> where students experience the challenges of reactor control without real-world risks. By gamifying key safety concepts, we transform traditional learning into an immersive, hands-on experience.</p>
             </div>
           </div>
           <div class="bg-slate-800 p-8 rounded-2xl border border-slate-700 shadow-xl">
-            <h3 class="text-xl font-bold mb-4 text-white">Key Objectives</h3>
+            <h3 class="text-xl font-bold mb-4 text-white">Key Learning Outcomes</h3>
             <ul class="space-y-3 text-slate-300">
-              <li class="flex gap-3">
-                <span class="text-blue-500">✓</span>
-                <span>Recognize early signs of reactor instability</span>
-              </li>
-              <li class="flex gap-3">
-                <span class="text-blue-500">✓</span>
-                <span>Apply control actions to restore safe operation</span>
-              </li>
-              <li class="flex gap-3">
-                <span class="text-blue-500">✓</span>
-                <span>Understand PID relationships (Temp, Flow, Pressure)</span>
-              </li>
-              <li class="flex gap-3">
-                <span class="text-blue-500">✓</span>
-                <span>Experience "Game Over" consequences safely</span>
-              </li>
+              {["Recognise early signs of reactor instability", "Apply control actions to restore safe operation", "Understand relationships between Temperature, Flow & Pressure", "Appreciate timely decision-making in process safety"].map(item => (
+                <li class="flex gap-3"><span class="text-blue-400 shrink-0">✓</span><span>{item}</span></li>
+              ))}
             </ul>
           </div>
         </div>
       </section>
 
+      <!-- ─── DATA ANALYSIS BANNER ─── -->
       <section>
-        <h2 class="text-3xl font-bold mb-10 text-center">System & Architecture</h2>
+        <div class="relative rounded-2xl overflow-hidden border border-cyan-700/40 bg-gradient-to-r from-cyan-950/80 to-slate-900/80 p-8 md:p-10 flex flex-col md:flex-row items-center gap-8">
+          <div class="text-5xl shrink-0">📊</div>
+          <div class="flex-1">
+            <h2 class="text-2xl font-bold text-white mb-2">Post-Session Data Review Tool</h2>
+            <p class="text-slate-300 text-sm leading-relaxed max-w-2xl">
+              After playing, the simulator can export your session data (temperature changes, pressure spikes, valve operations, alarm events) as a <strong class="text-cyan-300">CSV file</strong>.
+              Drag & drop it into our companion web app for a comprehensive visual review of your control decisions — reaction graphs, stability scores, and improvement insights.
+            </p>
+          </div>
+          <a
+            href={csvAnalysisUrl}
+            target="_blank"
+            class="shrink-0 bg-cyan-600 hover:bg-cyan-500 text-white font-bold px-7 py-4 rounded-xl transition duration-200 flex items-center gap-2 shadow-lg shadow-cyan-900/30 whitespace-nowrap"
+          >
+            Open Review Tool →
+          </a>
+        </div>
+      </section>
+
+      <!-- ─── SYSTEM ARCHITECTURE ─── -->
+      <section>
+        <h2 class="text-3xl font-bold mb-10 text-center">System Architecture</h2>
         <div class="grid md:grid-cols-3 gap-6">
-          <div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700 hover:border-blue-500/50 transition">
-            <div class="w-12 h-12 bg-blue-900/50 rounded-lg flex items-center justify-center mb-4 text-2xl">🎮</div>
-            <h3 class="text-xl font-bold mb-2">Powered by Unity</h3>
-            <p class="text-slate-400 text-sm">
-              Built with the Unity Engine for responsive visualization and smooth user interaction. We utilize Unity's physics engine to simulate realistic reactor behaviors.
-            </p>
-          </div>
-          <div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700 hover:border-blue-500/50 transition">
-            <div class="w-12 h-12 bg-blue-900/50 rounded-lg flex items-center justify-center mb-4 text-2xl">⚙️</div>
-            <h3 class="text-xl font-bold mb-2">Industrial Modeling</h3>
-            <p class="text-slate-400 text-sm">
-              Reactor components, valves, and piping systems were modeled using <strong>SolidWorks</strong> to ensure accurate representation of industrial equipment.
-            </p>
-          </div>
-          <div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700 hover:border-blue-500/50 transition">
-            <div class="w-12 h-12 bg-blue-900/50 rounded-lg flex items-center justify-center mb-4 text-2xl">🚨</div>
-            <h3 class="text-xl font-bold mb-2">Smart Alarms</h3>
-            <p class="text-slate-400 text-sm">
-              The system provides immediate visual and audible feedback when parameters exceed safety thresholds, training students in timely decision-making.
-            </p>
+          {[
+            { icon: "🧱", title: "SolidWorks", sub: "Visual & Interface Layer", desc: "Each reactor component — vessels, valves, piping systems — individually modelled in SolidWorks CAD and exported for seamless Unity integration." },
+            { icon: "🎮", title: "Unity Engine", sub: "Simulation Engine Layer", desc: "Handles rendering, PhysX physics simulation, user input, game logic, level progression, and real-time reactor behaviour scripted in C#." },
+            { icon: "🚨", title: "Control & Feedback", sub: "Safety Monitoring Layer", desc: "Processes player inputs, calculates real-time effects on reactor stability, and triggers visual + auditory alarms when thresholds are exceeded." },
+          ].map(card => (
+            <div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700 hover:border-blue-500/50 transition">
+              <div class="w-12 h-12 bg-blue-900/50 rounded-lg flex items-center justify-center mb-4 text-2xl">{card.icon}</div>
+              <p class="text-xs text-blue-400 font-semibold uppercase tracking-wider mb-1">{card.sub}</p>
+              <h3 class="text-xl font-bold mb-2">{card.title}</h3>
+              <p class="text-slate-400 text-sm leading-relaxed">{card.desc}</p>
+            </div>
+          ))}
+        </div>
+        <!-- Data flow -->
+        <div class="mt-8 bg-slate-800/30 rounded-xl border border-slate-700 p-6">
+          <p class="text-xs text-slate-500 text-center font-semibold uppercase tracking-widest mb-4">Data Flow Pipeline</p>
+          <div class="flex flex-wrap items-center justify-center gap-2 text-sm text-slate-300">
+            {["User Input (Controls)", "Interface Layer (Unity)", "Simulation Engine (C# Scripts)", "Parameter Model (T, P, pH)", "Safety Monitoring", "Visual Output (Graphs, Gauges, Alerts)"].map((step, i, arr) => (
+              <>
+                <span class="bg-slate-700 px-3 py-1.5 rounded-lg border border-slate-600">{step}</span>
+                {i < arr.length - 1 && <span class="text-blue-500 font-bold">→</span>}
+              </>
+            ))}
           </div>
         </div>
       </section>
 
-      <section class="bg-slate-950 p-8 rounded-3xl border border-slate-800">
-        <h2 class="text-2xl font-bold mb-8 text-center">Simulation Preview</h2>
+      <!-- ─── PRESENTATION SLIDES ─── -->
+      <section id="slides">
+        <div class="flex items-center justify-between mb-4">
+          <h2 class="text-3xl font-bold">Presentation Slides</h2>
+          <span class="text-sm text-slate-500">Scroll to explore →</span>
+        </div>
+        <p class="text-slate-400 text-sm mb-8">Key slides from the SEGP Group 12 final presentation.</p>
+
+        <!-- Slide scroller -->
+        <div class="slides-track flex gap-5 overflow-x-auto pb-4 snap-x snap-mandatory">
+          {slides.map(slide => (
+            <div
+              class="shrink-0 snap-start w-80 md:w-96 rounded-2xl border border-slate-700 p-6 flex flex-col gap-4"
+              style={`background: ${slide.bg};`}
+            >
+              <div class="flex items-center gap-3 mb-1">
+                <span class="text-3xl font-black opacity-20" style={`color: ${slide.accent}`}>{slide.num}</span>
+                <h3 class="text-base font-bold text-white leading-tight">{slide.title}</h3>
+              </div>
+              <div class="flex flex-col gap-3 flex-1">
+                {slide.content.map(block => (
+                  <div>
+                    <p class="text-xs font-bold mb-1.5" style={`color: ${slide.accent}`}>{block.label}</p>
+                    <ul class="space-y-1">
+                      {block.points.map(pt => (
+                        <li class="text-xs text-slate-300 flex gap-2">
+                          <span class="opacity-40 shrink-0">·</span>
+                          <span>{pt}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- ─── REPORT HIGHLIGHTS ─── -->
+      <section id="report">
+        <h2 class="text-3xl font-bold mb-2">Final Report Highlights</h2>
+        <p class="text-slate-400 text-sm mb-10">Key findings and design decisions from the GRP12 Final Group Report (December 2025).</p>
+
+        <!-- Level structure table -->
+        <div class="mb-10">
+          <h3 class="text-xl font-bold text-blue-400 mb-4">📋 Level Design Structure</h3>
+          <div class="overflow-x-auto rounded-xl border border-slate-700">
+            <table class="w-full text-sm">
+              <thead>
+                <tr class="bg-slate-800 border-b border-slate-700">
+                  <th class="text-left px-4 py-3 text-slate-400 font-semibold">#</th>
+                  <th class="text-left px-4 py-3 text-slate-400 font-semibold">Level</th>
+                  <th class="text-left px-4 py-3 text-slate-400 font-semibold">Complexity</th>
+                  <th class="text-left px-4 py-3 text-slate-400 font-semibold">Learning Focus</th>
+                </tr>
+              </thead>
+              <tbody>
+                {levels.map((lv, i) => (
+                  <tr class={`border-b border-slate-800 ${i % 2 === 0 ? "bg-slate-900/40" : "bg-slate-800/20"}`}>
+                    <td class="px-4 py-3 font-bold text-slate-500">{lv.num}</td>
+                    <td class="px-4 py-3 font-semibold text-white">{lv.name}</td>
+                    <td class="px-4 py-3">
+                      <span class={`text-xs px-2 py-0.5 rounded-full font-medium ${lv.badge}`}>{lv.complexity}</span>
+                    </td>
+                    <td class="px-4 py-3 text-slate-300">{lv.focus}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Key report sections -->
         <div class="grid md:grid-cols-2 gap-6">
-          <div class="aspect-video bg-slate-800 rounded-lg flex items-center justify-center text-slate-600 border border-slate-700">
-            <span class="text-sm">Main Control Interface</span>
+          <div class="bg-slate-800/50 rounded-xl border border-slate-700 p-6">
+            <h3 class="font-bold text-blue-400 mb-4 flex items-center gap-2">📚 Literature Review Summary</h3>
+            <div class="space-y-3 text-slate-300 text-sm leading-relaxed">
+              <p><strong class="text-white">Simulation-based education</strong> bridges the gap between theoretical concepts and practical application, improving academic performance, motivation, and confidence (Vlachopoulos et al., 2017).</p>
+              <p><strong class="text-white">Gamification</strong> makes learning goal-oriented through extrinsic and intrinsic motivators — completing levels, earning points, and responding to instant feedback (Oliveira et al., 2022).</p>
+              <p><strong class="text-white">Existing tools</strong> (Labster, Simulink, Aspen HYSYS) lack beginner-friendly gamified reactor control — our gap to fill.</p>
+            </div>
           </div>
-          <div class="aspect-video bg-slate-800 rounded-lg flex items-center justify-center text-slate-600 border border-slate-700">
-             <span class="text-sm">Alarm & Emergency Scenario</span>
+
+          <div class="bg-slate-800/50 rounded-xl border border-slate-700 p-6">
+            <h3 class="font-bold text-blue-400 mb-4 flex items-center gap-2">⚗️ Process Safety Design</h3>
+            <div class="space-y-3 text-slate-300 text-sm leading-relaxed">
+              <p>Safety logic is integrated as a <strong class="text-white">core system component</strong>: temperature, pressure, and reactant amounts are continuously monitored during every reaction scenario.</p>
+              <div class="bg-slate-900 rounded-lg p-3 font-mono text-xs text-green-400 border border-slate-700">
+                IF parameter &gt; safety limit → Trigger alarm<br/>
+                ELSE → Continue normal operation<br/>
+                IF alarm sustained → Reactor failure 💥
+              </div>
+              <p>This mirrors real <strong class="text-white">SCADA industrial control systems</strong> where continuous monitoring and automated alerts prevent hazardous conditions (Ara, 2022).</p>
+            </div>
           </div>
+
+          <div class="bg-slate-800/50 rounded-xl border border-slate-700 p-6">
+            <h3 class="font-bold text-blue-400 mb-4">🔧 Non-Functional Requirements</h3>
+            <ul class="space-y-2 text-sm text-slate-300">
+              {[
+                ["Language", "C# (native Unity scripting)"],
+                ["Platform", "Unity Engine for simulation & rendering"],
+                ["Deployment", "Standalone desktop app (Windows & macOS)"],
+                ["Performance", "Stable real-time graphical performance"],
+                ["Ethics", "No personal data collection — no ethics approval required"],
+              ].map(([k, v]) => (
+                <li class="flex gap-2">
+                  <span class="text-slate-500 shrink-0">·</span>
+                  <span><strong class="text-white">{k}:</strong> {v}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div class="bg-slate-800/50 rounded-xl border border-slate-700 p-6">
+            <h3 class="font-bold text-blue-400 mb-4">🛠️ Development Tools Used</h3>
+            <div class="grid grid-cols-2 gap-3">
+              {[
+                ["🎮", "Unity", "Game engine"],
+                ["📐", "SolidWorks", "3D CAD modelling"],
+                ["🎨", "Figma", "UI/UX prototyping"],
+                ["📁", "GitHub", "Version control"],
+                ["💬", "Discord", "Team communication"],
+                ["📝", "Notion", "Docs & task lists"],
+              ].map(([icon, name, desc]) => (
+                <div class="flex items-start gap-2">
+                  <span>{icon}</span>
+                  <div>
+                    <p class="text-sm font-semibold text-white">{name}</p>
+                    <p class="text-xs text-slate-500">{desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <!-- Reaction stoichiometry note -->
+        <div class="mt-6 bg-slate-950/60 rounded-xl border border-slate-700 p-6">
+          <h3 class="font-bold text-blue-400 mb-3">📖 Simplified Parameter-Based Reaction Modelling</h3>
+          <p class="text-slate-300 text-sm leading-relaxed max-w-3xl">
+            Instead of complex kinetic equations, the simulator uses a <strong class="text-white">simplified parameter-based approach</strong> focused on three core variables:
+            <strong class="text-white"> temperature</strong> (continuously monitored against thresholds),
+            <strong class="text-white"> reactant quantity & ratio</strong> (incorrect proportions → unstable reactions), and
+            <strong class="text-white"> reaction time</strong> (duration required for completion).
+            This keeps the simulation computationally efficient while effectively demonstrating fundamental process safety and reactor control principles.
+          </p>
         </div>
       </section>
 
-      <section class="text-center">
+      <!-- ─── SCREENSHOTS PLACEHOLDER ─── -->
+      <section class="bg-slate-950 p-8 rounded-3xl border border-slate-800">
+        <h2 class="text-2xl font-bold mb-2 text-center">Simulation Screenshots</h2>
+        <p class="text-slate-500 text-sm text-center mb-8">Visual overview of the game UI across key screens.</p>
+        <div class="grid md:grid-cols-2 gap-6">
+          {["Main Menu & Start Screen", "Level Selection Screen", "Main Gameplay Interface (HUD)", "Level Clear / Post-Level Quiz"].map(label => (
+            <div class="aspect-video bg-slate-800 rounded-xl flex items-center justify-center border border-slate-700">
+              <span class="text-slate-600 text-sm text-center px-4">{label}</span>
+            </div>
+          ))}
+        </div>
+        <p class="text-xs text-slate-600 text-center mt-4">Screenshots to be added. Replace the placeholder divs in the source code with &lt;img&gt; tags pointing to your actual screenshots.</p>
+      </section>
+
+      <!-- ─── TEAM ─── -->
+      <section id="team" class="text-center">
         <h2 class="text-2xl font-bold mb-8 text-slate-200">Meet the Team (Group 12)</h2>
         <div class="flex flex-wrap justify-center gap-4">
           {teamMembers.map((member) => (
             <div class="bg-slate-800 px-5 py-2 rounded-full border border-slate-700 text-slate-300 text-sm font-medium flex items-center gap-3 hover:border-blue-500/50 transition-colors">
               <span>{member.name}</span>
               {member.github && (
-                <a 
-                  href={member.github} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  class="text-slate-500 hover:text-white transition-colors"
-                  aria-label={`GitHub profile of ${member.name}`}
-                >
+                <a href={member.github} target="_blank" rel="noopener noreferrer" class="text-slate-500 hover:text-white transition-colors" aria-label={`GitHub profile of ${member.name}`}>
                   <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                     <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
                   </svg>
@@ -152,14 +429,14 @@ const teamMembers = [
           ))}
         </div>
         <div class="mt-8 text-sm text-slate-500">
-          Supervised by Dr. Tissa Chandesa • Expert Liaison: Dr. Joyce Tiong, Dr. Jaya Kumar, Dr. Ong Sze-Pheng
+          Supervised by Dr. Tissa Chandesa · Expert Liaison: Dr. Joyce Tiong, Dr. Jaya Kumar Karunagharan, Dr. Ong Sze-Pheng
         </div>
       </section>
 
+      <!-- ─── DOWNLOAD ─── -->
       <section id="download" class="text-center py-12 border-t border-slate-800">
         <h2 class="text-3xl font-bold mb-4">Ready to operate the reactor?</h2>
-        <p class="text-slate-400 mb-8">Compatible with Windows (& macOS) </p>
-        
+        <p class="text-slate-400 mb-8">Compatible with Windows (& macOS)</p>
         <a href={downloadUrl} class="inline-block bg-green-600 hover:bg-green-500 text-white text-xl font-bold py-4 px-12 rounded-xl transition duration-200 shadow-xl shadow-green-900/20">
           Download {version}
         </a>
@@ -167,18 +444,26 @@ const teamMembers = [
         <div class="mt-8 bg-yellow-500/10 border border-yellow-500/20 p-4 rounded-lg text-left max-w-lg mx-auto">
           <p class="text-yellow-500 font-bold text-sm mb-1">⚠ Windows SmartScreen Warning</p>
           <p class="text-xs text-yellow-200/70">
-            Since this is a university prototype, Windows may display a "Protected your PC" warning. 
+            Since this is a university prototype, Windows may display a "Protected your PC" warning.
             Click <strong>"More info"</strong> → <strong>"Run anyway"</strong> to launch the simulator.
           </p>
         </div>
-      </section>
 
+        <!-- CSV tool reminder -->
+        <div class="mt-6 max-w-lg mx-auto bg-cyan-950/40 border border-cyan-700/30 p-4 rounded-lg">
+          <p class="text-cyan-300 font-semibold text-sm mb-1">📊 After playing, review your session data</p>
+          <p class="text-xs text-cyan-200/60 mb-3">Export your CSV from the simulator, then drag & drop it into the review tool for detailed feedback.</p>
+          <a href={csvAnalysisUrl} target="_blank" class="inline-block bg-cyan-700 hover:bg-cyan-600 text-white text-sm font-bold py-2 px-6 rounded-lg transition">
+            Open Post-Session Review Tool →
+          </a>
+        </div>
+      </section>
     </main>
 
     <footer class="bg-slate-950 py-8 text-center border-t border-slate-900">
       <p class="text-slate-600 text-sm">
-        &copy; 2025 Group 12, University of Nottingham. All rights reserved. <br>
-        Developed for the Virtual Reactor Control Simulator Project.
+        &copy; 2025 Group 12, University of Nottingham. All rights reserved.<br/>
+        Virtual Reactor Control Simulator · COMP2019 Software Engineering Group Project
       </p>
     </footer>
   </body>
